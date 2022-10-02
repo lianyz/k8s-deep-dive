@@ -1,0 +1,41 @@
+
+pyton:2.7-slim
+RootFS: {
+    Type: "layers",
+    "Layers": [
+        "sha256:b60e5c3bcef2"
+        "sha256:568944187d93"
+        "sha256:7ea2b60b0a08"
+        "sha256:7a287aad297b"
+    ]
+}
+
+lianyz/helloworld:v1
+RootFS: {
+    Type: "layers",
+    "Layers": [
+        "sha256:b60e5c3bcef2"
+        "sha256:568944187d93"
+        "sha256:7ea2b60b0a08"
+        "sha256:7a287aad297b"
+        "sha256:77ce786f6877"
+        "sha256:c9fc5dad1719"
+        "sha256:1637f24455cf"
+    ]
+}
+
+lianyz/helloworld:v2
+Id: 8905a254
+RootFS: {
+    Type: "layers",
+    "Layers": [
+        "sha256:b60e5c3bcef2"
+        "sha256:568944187d93"
+        "sha256:7ea2b60b0a08"
+        "sha256:7a287aad297b"
+        "sha256:77ce786f6877"
+        "sha256:c9fc5dad1719"
+        "sha256:1637f24455cf"
+        "sha256:6cd1a1ee953c"
+    ]
+}
