@@ -11,7 +11,7 @@ spec:
     - mountPath: /app
       name: app-volume
   containers:
-  - image: geektime/tomcat:7.0
+  - image: tomcat:7.0
     name: tomcat
     command: [ "sh", "-c", "/root/apache-tomcat-7.0.42-v2/bin/start.sh"]
     volumeMounts:
