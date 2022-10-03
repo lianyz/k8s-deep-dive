@@ -39,5 +39,14 @@ k create -f nginx.yaml
 ```
 $ k attach -it nginx -c shell
 / # ps ax
+PID   USER     TIME  COMMAND
+    1 65535     0:00 /pause
+    7 root      0:00 nginx: master process nginx -g daemon off;
+   39 101       0:00 nginx: worker process
+   40 101       0:00 nginx: worker process
+   41 101       0:00 nginx: worker process
+   42 101       0:00 nginx: worker process
+   43 root      0:00 sh
+   49 root      0:00 ps ax
 
 ```
