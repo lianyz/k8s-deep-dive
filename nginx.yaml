@@ -3,7 +3,9 @@ kind: Pod
 metadata:
   name: nginx
 spec:
-  shareProcessNamespace: true
+  hostNetwork: true
+  hostIPC: true
+  hostPID: true
   containers:
   - name: nginx
     image: nginx
