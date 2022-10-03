@@ -1,4 +1,4 @@
-apiVerson: V1
+apiVersion: V1
 kind: Pod
 metadata: 
   name: javaweb-2
