@@ -27,3 +27,17 @@ EOF
 # 更新源
 apt-get update
 ```
+
+# Kubernetes编排原理
+
+## Pod内的容器共享 PID Namespace
+
+``` sh
+k create -f nginx.yaml
+```
+
+```
+$ k attach -it nginx -c shell
+/ # ps ax
+
+```
