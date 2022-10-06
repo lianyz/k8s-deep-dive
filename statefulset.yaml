@@ -6,7 +6,7 @@ spec:
   serviceName: nginx
   replicas: 2
   selector:
-    matchLables:
+    matchLabels:
       app: nginx
   template:
     metadata:
