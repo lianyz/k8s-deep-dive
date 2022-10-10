@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: hostnames
-        image: k8s.gcr.io/serve_hostname
+        image: docker.io/mirrorgooglecontainers/serve_hostname:latest
         ports:
         - containerPort: 9376
           protocol: TCP
