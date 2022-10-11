@@ -50,3 +50,40 @@ PID   USER     TIME  COMMAND
    49 root      0:00 ps ax
 
 ```
+## 安装Nginx Ingress
+
+```
+root@k8smaster:~/k8s-deep-dive# k apply -f deploy-nginx-ingress.yml 
+namespace/ingress-nginx created
+serviceaccount/ingress-nginx created
+serviceaccount/ingress-nginx-admission created
+role.rbac.authorization.k8s.io/ingress-nginx created
+role.rbac.authorization.k8s.io/ingress-nginx-admission created
+clusterrole.rbac.authorization.k8s.io/ingress-nginx created
+clusterrole.rbac.authorization.k8s.io/ingress-nginx-admission created
+rolebinding.rbac.authorization.k8s.io/ingress-nginx created
+rolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
+clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx created
+clusterrolebinding.rbac.authorization.k8s.io/ingress-nginx-admission created
+configmap/ingress-nginx-controller created
+service/ingress-nginx-controller created
+service/ingress-nginx-controller-admission created
+deployment.apps/ingress-nginx-controller created
+job.batch/ingress-nginx-admission-create created
+job.batch/ingress-nginx-admission-patch created
+ingressclass.networking.k8s.io/nginx created
+validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admission created
+
+```
+
+
+
+# 常见问题
+
+## k8s.gcr.io镜像无法拉取问题(Google Container Registry)
+
+将
+k8s.gcr.io/serve_hostname
+修改为
+docker.io/mirrorgooglecontainers/serve_hostname:latest
+
