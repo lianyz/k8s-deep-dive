@@ -1,3 +1,71 @@
+# 容器技术基础
+
+## 查看docker在Cgroups文件系统下CPU等子系统的限制的信息
+```
+/sys/fs/cgroup/cpu/docker/<longid>/在 cgroup v1 上，cgroupfs驱动程序
+/sys/fs/cgroup/cpu/system.slice/docker-<longid>.scope/在 cgroup v1 上，systemd驱动程序
+/sys/fs/cgroup/docker/<longid/>在 cgroup v2 上，cgroupfs驱动程序
+/sys/fs/cgroup/system.slice/docker-<longid>.scope/在 cgroup v2 上，systemd驱动程序
+```
+
+## 查看cgroup版本及驱动程序
+```
+$ docker info
+Client:
+ Context:    default
+ Debug Mode: false
+
+Server:
+ Containers: 131
+  Running: 98
+  Paused: 0
+  Stopped: 33
+ Images: 31
+ Server Version: 20.10.7
+ Storage Driver: overlay2
+  Backing Filesystem: extfs
+  Supports d_type: true
+  Native Overlay Diff: true
+  userxattr: false
+ Logging Driver: json-file
+ Cgroup Driver: systemd
+ Cgroup Version: 1
+ Plugins:
+  Volume: local
+  Network: bridge host ipvlan macvlan null overlay
+  Log: awslogs fluentd gcplogs gelf journald json-file local logentries splunk syslog
+ Swarm: inactive
+ Runtimes: io.containerd.runc.v2 io.containerd.runtime.v1.linux runc
+ Default Runtime: runc
+ Init Binary: docker-init
+ containerd version: 
+ runc version: 
+ init version: 
+ Security Options:
+  apparmor
+  seccomp
+   Profile: default
+ Kernel Version: 5.15.0-41-generic
+ Operating System: Ubuntu 20.04.3 LTS
+ OSType: linux
+ Architecture: x86_64
+ CPUs: 4
+ Total Memory: 2.912GiB
+ Name: k8smaster
+ ID: KVUB:2P36:U7BP:M2Y5:3PO6:HSAO:2JBK:VC2K:F5FA:CEST:R7TR:TFBL
+ Docker Root Dir: /var/lib/docker
+ Debug Mode: false
+ Registry: https://index.docker.io/v1/
+ Labels:
+ Experimental: false
+ Insecure Registries:
+  127.0.0.0/8
+ Registry Mirrors:
+  https://pme3c7qu.mirror.aliyuncs.com/
+ Live Restore Enabled: false
+```
+
+
 # 安装 ubuntu22.04 操作系统
 
 ## 修改root密码
