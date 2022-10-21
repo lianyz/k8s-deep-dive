@@ -12,10 +12,13 @@ spec:
       - "3600"
     imagePullPolicy: IfNotPresent
     volumeMounts:
-    - name: Test
-      flexVolume:
-        dirver: "k8s/nfs"
-        fsType: "nfs"
-        options:
-          server: 192.168.34.2
-          share: "/www"
+    - name: test
+      mountPath: /data
+  volumes:
+  - name: test
+    flexVolume:
+      dirver: "k8s/nfs"
+      fsType: "nfs"
+      options:
+        server: 192.168.34.2
+        share: "/www"
