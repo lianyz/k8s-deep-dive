@@ -161,8 +161,8 @@ verify the remote file system are mounted successfully
 to make the mounts permanent on reboot, edit the /etc/fstab file:
 
 ```
-192.168.34.2:/backup      /root/nfsclient/backups  nfs  defaults,timeo=900,retrans=5,_netdev   0   0
-192.168.34.2:/www         /root/nfsclient/www       nfs  defaults,timeo=900,retrans=5,_netdev   0   0 
+192.168.34.2:/backup  /root/nfsclient/backups  nfs  defaults,timeo=900,retrans=5,_netdev   0   0
+192.168.34.2:/www     /root/nfsclient/www      nfs  defaults,timeo=900,retrans=5,_netdev   0   0 
 ```
 
 
