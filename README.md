@@ -66,6 +66,105 @@ Server:
  Live Restore Enabled: false
 ```
 
+# 安装nfs server
+
+## 安装nfs服务端
+
+参考：
+1. [How to Install and Configure an NFS Server on Ubuntu 20.04](https://linuxize.com/post/how-to-install-and-configure-an-nfs-server-on-ubuntu-20-04/)
+2. [NFS permission denied](https://unix.stackexchange.com/questions/79172/nfs-permission-denied)
+```
+# apt update
+# apt install nfs-kernel-server
+# cat /proc/fs/nfsd/versions
+-2 +3 +4 +4.1 +4.2
+```
+
+```
+# mkdir -p /srv/nfs4/backups
+# mkdir -p /srv/nfs4/www
+```
+
+```
+# mkdir -p /opt/backups
+# mkdir -p /var/www
+```
+
+```
+# mount --bind /opt/backups /srv/nfs4/backups
+# mount --bind /var/www     /srv/nfs4/www
+```
+
+to make the bind mounts permanent across reboots, edit the /etc/fstab file:
+
+```
+vim /etc/fstab
+```
+
+add the following lines:
+```
+/opt/backups   /srv/nfs4/backups    none   bind  0   0
+/var/www       /srv/nfs4/www        none   bind  0   0
+```
+
+export the file systems
+```
+vim /etc/exports
+```
+
+add the following lines:（no_root_squash选项，让客户端拥有写权限）
+```
+/srv/nfs4         192.168.34.0/24(rw,sync,no_subtree_check,crossmnt,fsid=0)
+/srv/nfs4/backups 192.168.34.0/24(ro,sync,no_subtree_check) 192.168.34.2(rw,sync,no_subtree_check)
+/srv/nfs4/www     192.168.34.2(rw,sync,no_root_squash,no_subtree_check)
+```
+
+export the shares:
+```
+exportfs -ar
+```
+
+```
+# exportfs -v
+/srv/nfs4/backups  192.168.34.2(rw,wdelay,root_squash,no_subtree_check,sec=sys,rw,secure,root_squash,no_all_squash)
+/srv/nfs4/www 	   192.168.34.2(rw,wdelay,no_root_squash,no_subtree_check,sec=sys,rw,secure,no_root_squash,no_all_squash)
+/srv/nfs4     	   192.168.34.0/24(rw,wdelay,crossmnt,root_squash,no_subtree_check,fsid=0,sec=sys,rw,secure,root_squash,no_all_squash)
+/srv/nfs4/backups  192.168.34.0/24(ro,wdelay,root_squash,no_subtree_check,sec=sys,ro,secure,root_squash,no_all_squash)
+```
+
+## 安装nfs客户端
+
+```
+# apt update
+# apt install nfs-common
+```
+
+create two new directories for the mount points:
+```
+mkdir -p /root/nfsclient/backups
+mkdir -p /root/nfsclient/www
+```
+
+mount the exported file systems with the mount command
+```
+# mount -t nfs -o vers=4 192.168.34.2:/backups /root/nfsclient/backups
+# mount -t nfs -o vers=4 192.168.34.2:/www /root/nfsclient/www
+```
+
+verify the remote file system are mounted successfully
+```
+# df -h | grep "/root/nfsclient"
+192.168.34.2:/backups   29G   19G  8.8G  69% /root/nfsclient/backups
+192.168.34.2:/www       29G   19G  8.8G  69% /root/nfsclient/www
+```
+
+to make the mounts permanent on reboot, edit the /etc/fstab file:
+
+```
+192.168.34.2:/backup      /root/nfsclient/backups  nfs  defaults,timeo=900,retrans=5,_netdev   0   0
+192.168.34.2:/www         /root/nfsclient/www       nfs  defaults,timeo=900,retrans=5,_netdev   0   0 
+```
+
 
 # 安装 ubuntu22.04 操作系统
 
