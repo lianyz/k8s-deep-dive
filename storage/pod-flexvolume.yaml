@@ -17,7 +17,7 @@ spec:
   volumes:
   - name: test
     flexVolume:
-      dirver: "k8s/nfs"
+      driver: "k8s/nfs"
       fsType: "nfs"
       options:
         server: 192.168.34.2
