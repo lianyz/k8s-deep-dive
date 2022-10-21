@@ -14,6 +14,8 @@ spec:
     volumeMounts:
     - name: test
       mountPath: /data
+    - name: test2
+      mountPath: /data2
   volumes:
   - name: test
     flexVolume:
@@ -22,3 +24,6 @@ spec:
       options:
         server: 192.168.34.2
         share: "/www"
+  - name: test2
+    persistentVolumeClaim:
+      claimName: pvc-flex-nfs  

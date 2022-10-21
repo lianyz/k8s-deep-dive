@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nfs
+  namespace: lianyz
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: flex-volume
+  resources:
+    requests:
+      storage: 1Gi

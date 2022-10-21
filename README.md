@@ -165,6 +165,46 @@ to make the mounts permanent on reboot, edit the /etc/fstab file:
 192.168.34.2:/www     /root/nfsclient/www      nfs  defaults,timeo=900,retrans=5,_netdev   0   0 
 ```
 
+# 存储原理
+
+## flexVolume
+
+将flexVoliume存储插件nfs拷贝到各节点的插件目录下，即/usr/libexec/kubernetes/kubelet-plugins/volume/exec/k8s~nfs，nfs的实现见[Github](https://github.com/kubernetes/examples/blob/master/staging/volumes/flexvolume/nfs)
+
+执行以下命令安装pod
+```
+# k apply -f storage/pod-flexvolume.yaml
+```
+
+```
+# k describe pod busybox -n lianyz
+...
+Events:
+  Type     Reason                  Age                    From               Message
+  ----     ------                  ----                   ----               -------
+  Normal   Scheduled               7m13s                  default-scheduler  Successfully assigned lianyz/busybox to k8smaster
+  Warning  FailedMount             3m18s (x4 over 4m57s)  kubelet            Unable to attach or mount volumes: unmounted volumes=[test], unattached volumes=[kube-api-access-5m5kd test]: failed to get Plugin from volumeSpec for volume "test" err=no volume plugin matched
+  Warning  FailedMount             3m6s (x16 over 7m14s)  kubelet            Unable to attach or mount volumes: unmounted volumes=[test], unattached volumes=[test kube-api-access-5m5kd]: failed to get Plugin from volumeSpec for volume "test" err=no volume plugin matched
+```
+
+### no volume plugin matched问题解决方案
+1. 通过apt install jq命令安装jq工具
+2. 通过chmod 777 nfs将插件实现设置为可执行
+3. 重启虚拟机节点
+
+Pod启动成功
+```
+# k get po -n lianyz
+NAME        READY   STATUS    RESTARTS       AGE
+busybox     1/1     Running   0              30m
+```
+
+```
+k exec -it busybox -n lianyz -- sh
+/ # 
+```
+
+在容器中查看/data目录，挂载成功。
 
 # 安装 ubuntu22.04 操作系统
 

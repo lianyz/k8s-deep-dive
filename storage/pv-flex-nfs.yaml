@@ -3,6 +3,7 @@ kind: PersistentVolume
 metadata:
   name: pv-flex-nfs
 spec:
+  storageClassName: flex-volume
   capacity:
     storage: 1Gi
   accessModes:
@@ -12,4 +13,4 @@ spec:
     fsType: "nfs"
     options:
       server: "192.168.34.2"
-      share: "export"
+      share: "/www"
