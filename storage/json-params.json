@@ -1,0 +1,11 @@
+{
+    "kubernetes.io/fsType": "nfs",
+    "kubernetes.io/pod.name": "busybox",
+    "kubernetes.io/pod.namespace": "lianyz",
+    "kubernetes.io/pod.uid": "845f0876-613d-4e45-abd2-090b09c35287",
+    "kubernetes.io/pvOrVolumeName": "test",
+    "kubernetes.io/readwrite": "rw",
+    "kubernetes.io/serviceAccount.name": "default",
+    "server": "192.168.34.2",
+    "share": "/www"
+}
