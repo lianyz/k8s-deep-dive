@@ -71,8 +71,8 @@ ismounted() {
 
 domount() {
 
-	echo $1 > /data/log.txt
-	echo $2 > /data/log.txt
+	echo $1 > /home/log.txt
+	echo $2 > /home/log.txt
 
 
 	MNTPATH=$1
