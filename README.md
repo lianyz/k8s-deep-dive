@@ -1,3 +1,17 @@
+# k8s在节点上的各个目录
+
+1. Pod的Volume在宿主机上的目录
+```
+/var/lib/kubelet/pods/<Pod ID>/volumes/<vendor>~<driver>/<volume Name>
+e.g. /var/lib/kubelet/pods/a2a653e5-d142-4f14-b1be-f0e390bf4a15/volumes/k8s~nfs/test
+```
+
+2. flexVolume存储插件的目录
+```
+/usr/libexec/kubernetes/kubelet-plugins/volume/exec/<vendor>~<driver>/<plugin-name>
+e.g. /usr/libexec/kubernetes/kubelet-plugins/volume/exec/k8s-nfs/nfs
+```
+
 # 容器技术基础
 
 ## 查看docker在Cgroups文件系统下CPU等子系统的限制的信息
@@ -217,6 +231,23 @@ k exec -it busybox -n lianyz -- sh
 ## 修改hostname
 
 vim /etc/hostname
+
+
+## 添加访问github的公私钥对
+
+```
+ssh-keygen -t rsa -C "lianyz"
+$> Your identification has been saved in /root/.ssh/id_rsa.
+$> Your public key has been saved in /root/.ssh/id_rsa.pub.
+```
+
+将公钥id_rsa.pub添加到你的github或者gitlab等仓库中,
+打开公钥文件复制全文
+
+```
+vim /root/.ssh/id_rsa.pub
+```
+使用邮箱登录github，用户->setting -> SSH key 将公钥粘贴进去，起个容易识别的名字 title
 
 
 # Kubernetes集群搭建和配置
