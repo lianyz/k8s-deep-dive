@@ -316,6 +316,25 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admiss
 ```
 
 
+### DNS解析
+
+DNS 解析是通过 Kubernetes 集群中配置的 CoreDNS 完成的，kubelet 将每个 Pod 的 /etc/resolv.conf 配置为使用 coredns pod 作为 nameserver。我们可以在任何 Pod 中看到 /etc/resolv.conf 的内容，如下所示：
+
+```
+search hello.svc.cluster.local svc.cluster.local cluster.local
+nameserver 10.152.183.10
+options ndots:5
+```
+
+复制
+DNS 客户端使用此配置将 DNS 查询转发到 DNS 服务器， resolv.conf 是解析程序的配置文件，其中包含以下信息：
+
+nameserver：DNS 查询转发到的服务地址，实际上就是 CoreDNS 服务的地址。
+search：表示特定域的搜索路径，有趣的是 google.com 或 mrkaran.dev 不是 FQDN 形式的域名。大多数 DNS 解析器遵循的标准约定是，如果域名以 . 结尾（代表根区域），该域就会被认为是 FQDN。有一些 DNS 解析器会尝试用一些自动的方式将 . 附加上。所以， mrkaran.dev. 是 FQDN，但 mrkaran.dev 不是。
+ndots：这是最有趣的一个参数，也是这篇文章的重点， ndots 代表查询名称中的点数阈值，Kubernetes 中默认为5，如果查询的域名包含的点 “.” 不到5个，那么进行 DNS 查找，将使用非完全限定名称，如果你查询的域名包含点数大于等于5，那么 DNS 查询默认会使用绝对域名进行查询。
+ndots 点数少于 5个，先走 search 域，最后将其视为绝对域名进行查询；点数大于等于5个，直接视为绝对域名进行查找，只有当查询不到的时候，才继续走 search 域。
+
+
 
 # 常见问题
 
@@ -325,4 +344,5 @@ validatingwebhookconfiguration.admissionregistration.k8s.io/ingress-nginx-admiss
 k8s.gcr.io/serve_hostname
 修改为
 docker.io/mirrorgooglecontainers/serve_hostname:latest
+
 
