@@ -3,8 +3,7 @@ kind: Pod
 metadata:
   name: website
   labels: 
-    app: website
-    role: frontend
+    app: nginx
 spec:
   containers:
   - name: website
