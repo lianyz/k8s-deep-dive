@@ -17,19 +17,20 @@ spec:
       containers:
       - name: nginx
         image: nginx
+        imagePullPolicy: Never  # image pull policy: Always ifNotPresent Never
         ports:
         - name: web
           containerPort: 80
         volumeMounts:
         - name: www
           mountPath: /usr/share/nginx/html
-volumeClaimTemplate:
-- metadata:
-    name: www
-  spec:
-    accessModes:
-    - ReadWriteOnce
-    resources:
-      requests:
-        storage: 1Gi
+  volumeClaimTemplates:
+  - metadata:
+      name: www
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
           
