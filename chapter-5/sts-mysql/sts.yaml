@@ -27,7 +27,7 @@ spec:
         configMap:
           name: mysql
   volumeClaimTemplates:
-  - metedata:
+  - metadata:
       name: data
     spec:
       accessModes: 
