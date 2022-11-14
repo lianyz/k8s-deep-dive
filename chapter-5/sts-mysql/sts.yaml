@@ -41,7 +41,8 @@ spec:
         - name: config-map
           mountPath: /mnt/config-map
       - name: clone-mysql
-        image: xtrabackup:1.0
+        image: gcr.io/google-samples/xtrabackup:1.0
+        imagePullPolicy: ifNotPresent  # image pull policy: Always ifNotPresent Never
         command:
         - bash
         - "-c"
@@ -95,7 +96,8 @@ spec:
           periodSeconds: 2
           timeoutSeconds: 1
       - name: xtrabackup
-        image: xtrabackup:1.0
+        image: gcr.io/google-samples/xtrabackup:1.0
+        imagePullPolicy: ifNotPresent  # image pull policy: Always ifNotPresent Never
         ports:
         - name: xtrabackup
           containerPort: 3307
