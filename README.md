@@ -346,3 +346,60 @@ k8s.gcr.io/serve_hostname
 docker.io/mirrorgooglecontainers/serve_hostname:latest
 
 
+## 启动mysql实例报Back-off restarting failed container异常问题排查
+
+
+```
+k describe po mysql-0 -n lianyz
+...
+Events:
+  Type     Reason     Age                From               Message
+  ----     ------     ----               ----               -------
+  Normal   Scheduled  14s                default-scheduler  Successfully assigned lianyz/mysql-0 to k8smaster
+  Normal   Pulled     13s                kubelet            Container image "mysql:5.7" already present on machine
+  Normal   Created    13s                kubelet            Created container init-mysql
+  Normal   Started    13s                kubelet            Started container init-mysql
+  Normal   Pulled     11s (x2 over 12s)  kubelet            Container image "gcr.io/google-samples/xtrabackup:1.0" already present on machine
+  Normal   Created    11s (x2 over 12s)  kubelet            Created container clone-mysql
+  Normal   Started    11s (x2 over 12s)  kubelet            Started container clone-mysql
+  Warning  BackOff    9s (x2 over 10s)   kubelet            Back-off restarting failed container
+```
+
+查看容器日志(没有指定pod的容器报错)
+```
+k logs mysql-0 -n lianyz
+error: a container name must be specified for pod mysql-0, choose one of: [mysql xtrabackup] or one of the init containers: [init-mysql clone-mysql]
+```
+
+查看容器init-mysql日志
+```
+k logs mysql-0 init-mysql -n lianyz
+++ hostname
++ [[ mysql-0 =~ -([0-9]+)$ ]]
++ ordinal=0
++ echo '[mysqld]'
++ echo server-id=100
++ [[ 0 -eq 0 ]]
++ cp /mnt/config-map/master.cnf /mnt/conf.d/
+```
+
+查看容器clone-mysql日志
+```
+k logs mysql-0 clone-mysql -n lianyz
++ [[ -d /var/lib/mysql/mysql ]]
+++ hostname
++ [[ mysql-0 =~ -([0-9]+)$ ]]
+++ 'BASH_REMATCH[1]'
+bash: line 5: BASH_REMATCH[1]: command not found
++ ordinal=
+```
+
+原因为
+将
+```
+${BASH_REMATCH[1]}
+```
+错误的写为了
+```
+$(BASH_REMATCH[1])
+```
