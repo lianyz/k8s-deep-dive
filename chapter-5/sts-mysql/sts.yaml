@@ -114,7 +114,7 @@ spec:
             mv xtrabackup_slave_info change_master_to.sql.in
             rm -f xtrabackup_binlog_info
           elif [[ -f xtrabackup_binlog_info ]]; then
-            [[ `cat xtrabackup_binlog_info ` =~ ^(.*?)[[:space]]+(.*?)$ ]] || exit 1
+            [[ `cat xtrabackup_binlog_info ` =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1
             rm xtrabackup_binlog_info
             echo "CHANGE MASTER TO MASTER_LOG_FILE='${BASH_REMATCH[1]}', \
             MASTER_LOG_POS=${BASH_REMATCH[2]}" > change_master_to_sql.in
