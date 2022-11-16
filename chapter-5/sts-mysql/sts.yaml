@@ -129,7 +129,7 @@ spec:
 
             mysql -h 127.0.0.1 <<EOF
           $(<change_master_to.sql.orig),
-            MASTER_HOST='mysql-0.sql',
+            MASTER_HOST='mysql-0.mysql',
             MASTER_USER='root',
             MASTER_PASSWORD='',
             MASTER_CONNECT_RETRY=10;
