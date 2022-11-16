@@ -8,5 +8,4 @@ spec:
   - name: mysql-client
     image: mysql:5.7
     imagePullPolicy: IfNotPresent
-    command:
-    - bash
+    command: ["/bin/sleep", "30d"]
