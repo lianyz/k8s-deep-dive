@@ -125,10 +125,10 @@ spec:
             until mysql -h 127.0.0.1 -e "SELECT 1"; do sleep 1; done
 
             echo "Initializing replication from clone position"
-            mv change_master_to.sql.in change_master_to_sql.orig
+            mv change_master_to.sql.in change_master_to.sql.orig
 
             mysql -h 127.0.0.1 <<EOF
-          $(<change_master_to_sql.orig),
+          $(<change_master_to.sql.orig),
             MASTER_HOST='mysql-0.sql',
             MASTER_USER='root',
             MASTER_PASSWORD='',
