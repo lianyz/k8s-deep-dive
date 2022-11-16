@@ -9,7 +9,7 @@ rm -rf /root/nfsclient/www3/mysql
 
 
 kubectl create ns lianyz
-kubectl cm.yaml
+kubectl apply -f cm.yaml
 kubectl apply -f pv1.yaml
 kubectl apply -f pv2.yaml
 kubectl apply -f pv3.yaml
