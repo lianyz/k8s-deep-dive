@@ -117,7 +117,7 @@ spec:
             [[ `cat xtrabackup_binlog_info ` =~ ^(.*?)[[:space:]]+(.*?)$ ]] || exit 1
             rm xtrabackup_binlog_info
             echo "CHANGE MASTER TO MASTER_LOG_FILE='${BASH_REMATCH[1]}', \
-            MASTER_LOG_POS=${BASH_REMATCH[2]}" > change_master_to_sql.in
+            MASTER_LOG_POS=${BASH_REMATCH[2]}" > change_master_to.sql.in
           fi
 
           if [[ -f change_master_to.sql.in ]]; then
