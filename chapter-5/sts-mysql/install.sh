@@ -1,13 +1,18 @@
-k delete ns lianyz
-k delete pv sts-pv1
-k delete pv sts-pv2
-k delete pv sts-pv3
+kubectl delete ns lianyz
+kubectl delete pv sts-pv1
+kubectl delete pv sts-pv2
+kubectl delete pv sts-pv3
 
-k create ns lianyz
-ka cm.yaml
-ka pv1.yaml
-ka pv2.yaml
-ka pv3.yaml
-ka svc.yaml
-ka sts.yaml
-ka pod-mysql-client.yaml
+rm -rf /root/nfsclient/www1/mysql
+rm -rf /root/nfsclient/www2/mysql
+rm -rf /root/nfsclient/www3/mysql
+
+
+kubectl create ns lianyz
+kubectl cm.yaml
+kubectl apply -f pv1.yaml
+kubectl apply -f pv2.yaml
+kubectl apply -f pv3.yaml
+kubectl apply -f svc.yaml
+kubectl apply -f sts.yaml
+kubectl apply -f pod-mysql-client.yaml
