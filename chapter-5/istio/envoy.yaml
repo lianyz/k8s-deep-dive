@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: envoy-initializer
+  namespace: lianyz
+  labels:
+    app: envoy-initializer
+spec:
+  containers:
+  - name: envoy-initializer
+    image: envoy-initializer:0.0.1
+    imagePullPolicy: Always
