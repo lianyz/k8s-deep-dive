@@ -9,6 +9,6 @@ spec:
       containers:
       - name: pi
         image: resouer/ubuntu-bc
-        command: ["sh", "-c", "echo 'scale=10000; 4*a(1)' | bc -1 "]
+        command: ["sh", "-c", "echo 'scale=10000; 4*a(1)' | bc -l "]
       restartPolicy: Never
   backoffLimit: 4
