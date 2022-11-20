@@ -9,7 +9,7 @@ spec:
       containers:
       - name: pi
         image: resouer/ubuntu-bc
-        command: ["sh", "-c", "echo 'scale=100000; 4*a(1)' | bc -l "]
+        command: ["sh", "-c", "echo 'scale=1000; 4*a(1)' | bc -l "]
       restartPolicy: Never # OnFailure,重启Pod里的容器
   backoffLimit: 4
   activeDeadlineSeconds: 120
