@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: envoy-initializer
+data:
+  config: |
+    containers:
+    - name: envoy
+      image: lyft/envoy
+      command: ["/usr/local/bin/envoy"]
+      args:
+      - "--concurrency 4"
+      - "--config-path /etc/envoy/envoy.json"
+      - "--made serve"
+      ports:
+      - containerPort: 80
+        protocol: TCP
+      resources:
+        limits:
+          cpu: "500m"
+          memory: "128Mi"
+        requests:
+          cpu: "100m"
+          memory: "64Mi"
+      volumeMounts:
+      - name: envoy-conf
+        mountPath: /etc/envoy
+    volumes:
+    - name: envoy-conf
+      configMap:
+        name: envoy
