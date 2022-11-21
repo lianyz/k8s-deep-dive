@@ -4,7 +4,12 @@ metadata:
   name: networks.samplecrd.k8s.io
 spec:
   group: samplecrd.k8s.io
-  versions: [ "v1" ]
+  versions:
+  - name: v1
+    # Each version can be enabled/disabled by Served flag.
+    served: true
+    # One and only one version must be marked as the storage version.
+    storage: true
   names:
     kind: Network
     plural: networks
