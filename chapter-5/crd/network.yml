@@ -4,7 +4,7 @@ metadata:
   name: networks.samplecrd.k8s.io
 spec:
   group: samplecrd.k8s.io
-  version: v1
+  versions: v1
   names:
     kind: Network
     plural: networks
