@@ -2,6 +2,8 @@ apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   name: networks.samplecrd.k8s.io
+  annnotations:
+    api-approved.kubernetes.io = true
 spec:
   group: samplecrd.k8s.io
   versions:
