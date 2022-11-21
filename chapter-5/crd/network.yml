@@ -3,7 +3,7 @@ kind: CustomResourceDefinition
 metadata:
   name: networks.samplecrd.k8s.io
   annotations:
-    api-approved.kubernetes.io = true
+    "api-approved.kubernetes.io": "https://github.com/kubernetes/kubernetes/pull/78458"
 spec:
   group: samplecrd.k8s.io
   versions:
