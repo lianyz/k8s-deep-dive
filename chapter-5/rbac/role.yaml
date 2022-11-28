@@ -6,4 +6,5 @@ metadata:
 rules:
 - apiGroups: [""]
   resources: ["pods"]
+  resourceNames: [""] # 针对某个具体对象设置权限
   verbs: ["get", "watch", "list"]

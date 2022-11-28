@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: example-rolebinding-sa
+  namespace: lianyz
+subjects:
+  - kind: Group
+    name: system:serviceaccounts:lianyz  # 该Role的权限规则作用于lianyz命名空间里所有的ServiceAccount
+    namespace: lianyz
+roleRef:
+  kind: Role
+  name: example-role
+  apiGroup: rbac.authorization.k8s.io
