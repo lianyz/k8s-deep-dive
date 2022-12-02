@@ -8,3 +8,6 @@ rules:
   resources: ["pods"]
   resourceNames: [""] # 针对某个具体对象设置权限
   verbs: ["get", "watch", "list"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles"]
+  verbs: ["get", "watch", "list"]

@@ -5,7 +5,7 @@ metadata:
   namespace: lianyz
 subjects:
 - kind: User
-  name: example-user
+  name: lianyz
   apiGroup: rbac.authorization.k8s.io
 roleRef:
   kind: Role
