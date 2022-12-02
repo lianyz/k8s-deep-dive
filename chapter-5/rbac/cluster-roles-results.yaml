@@ -1,0 +1,267 @@
+Name:         system:kube-scheduler
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources                                  Non-Resource URLs  Resource Names    Verbs
+  ---------                                  -----------------  --------------    -----
+  events                                     []                 []                [create patch update]
+  events.events.k8s.io                       []                 []                [create patch update]
+  bindings                                   []                 []                [create]
+  endpoints                                  []                 []                [create]
+  pods/binding                               []                 []                [create]
+  tokenreviews.authentication.k8s.io         []                 []                [create]
+  subjectaccessreviews.authorization.k8s.io  []                 []                [create]
+  leases.coordination.k8s.io                 []                 []                [create]
+  pods                                       []                 []                [delete get list watch]
+  namespaces                                 []                 []                [get list watch]
+  nodes                                      []                 []                [get list watch]
+  persistentvolumeclaims                     []                 []                [get list watch]
+  persistentvolumes                          []                 []                [get list watch]
+  replicationcontrollers                     []                 []                [get list watch]
+  services                                   []                 []                [get list watch]
+  replicasets.apps                           []                 []                [get list watch]
+  statefulsets.apps                          []                 []                [get list watch]
+  replicasets.extensions                     []                 []                [get list watch]
+  poddisruptionbudgets.policy                []                 []                [get list watch]
+  csidrivers.storage.k8s.io                  []                 []                [get list watch]
+  csinodes.storage.k8s.io                    []                 []                [get list watch]
+  csistoragecapacities.storage.k8s.io        []                 []                [get list watch]
+  endpoints                                  []                 [kube-scheduler]  [get update]
+  leases.coordination.k8s.io                 []                 [kube-scheduler]  [get update]
+  pods/status                                []                 []                [patch update]
+
+
+Name:         cluster-admin
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources  Non-Resource URLs  Resource Names  Verbs
+  ---------  -----------------  --------------  -----
+  *.*        []                 []              [*]
+             [*]                []              [*]
+
+
+
+Name:         admin
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources                                       Non-Resource URLs  Resource Names  Verbs
+  ---------                                       -----------------  --------------  -----
+  rolebindings.rbac.authorization.k8s.io          []                 []              [create delete deletecollection get list patch update watch]
+  roles.rbac.authorization.k8s.io                 []                 []              [create delete deletecollection get list patch update watch]
+  configmaps                                      []                 []              [create delete deletecollection patch update get list watch]
+  events                                          []                 []              [create delete deletecollection patch update get list watch]
+  persistentvolumeclaims                          []                 []              [create delete deletecollection patch update get list watch]
+  pods                                            []                 []              [create delete deletecollection patch update get list watch]
+  replicationcontrollers/scale                    []                 []              [create delete deletecollection patch update get list watch]
+  replicationcontrollers                          []                 []              [create delete deletecollection patch update get list watch]
+  services                                        []                 []              [create delete deletecollection patch update get list watch]
+  daemonsets.apps                                 []                 []              [create delete deletecollection patch update get list watch]
+  deployments.apps/scale                          []                 []              [create delete deletecollection patch update get list watch]
+  deployments.apps                                []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.apps/scale                          []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.apps                                []                 []              [create delete deletecollection patch update get list watch]
+  statefulsets.apps/scale                         []                 []              [create delete deletecollection patch update get list watch]
+  statefulsets.apps                               []                 []              [create delete deletecollection patch update get list watch]
+  horizontalpodautoscalers.autoscaling            []                 []              [create delete deletecollection patch update get list watch]
+  cronjobs.batch                                  []                 []              [create delete deletecollection patch update get list watch]
+  jobs.batch                                      []                 []              [create delete deletecollection patch update get list watch]
+  daemonsets.extensions                           []                 []              [create delete deletecollection patch update get list watch]
+  deployments.extensions/scale                    []                 []              [create delete deletecollection patch update get list watch]
+  deployments.extensions                          []                 []              [create delete deletecollection patch update get list watch]
+  ingresses.extensions                            []                 []              [create delete deletecollection patch update get list watch]
+  networkpolicies.extensions                      []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.extensions/scale                    []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.extensions                          []                 []              [create delete deletecollection patch update get list watch]
+  replicationcontrollers.extensions/scale         []                 []              [create delete deletecollection patch update get list watch]
+  ingresses.networking.k8s.io                     []                 []              [create delete deletecollection patch update get list watch]
+  networkpolicies.networking.k8s.io               []                 []              [create delete deletecollection patch update get list watch]
+  poddisruptionbudgets.policy                     []                 []              [create delete deletecollection patch update get list watch]
+  deployments.apps/rollback                       []                 []              [create delete deletecollection patch update]
+  deployments.extensions/rollback                 []                 []              [create delete deletecollection patch update]
+  localsubjectaccessreviews.authorization.k8s.io  []                 []              [create]
+  pods/attach                                     []                 []              [get list watch create delete deletecollection patch update]
+  pods/exec                                       []                 []              [get list watch create delete deletecollection patch update]
+  pods/portforward                                []                 []              [get list watch create delete deletecollection patch update]
+  pods/proxy                                      []                 []              [get list watch create delete deletecollection patch update]
+  secrets                                         []                 []              [get list watch create delete deletecollection patch update]
+  services/proxy                                  []                 []              [get list watch create delete deletecollection patch update]
+  bindings                                        []                 []              [get list watch]
+  endpoints                                       []                 []              [get list watch]
+  limitranges                                     []                 []              [get list watch]
+  namespaces/status                               []                 []              [get list watch]
+  namespaces                                      []                 []              [get list watch]
+  persistentvolumeclaims/status                   []                 []              [get list watch]
+  pods/log                                        []                 []              [get list watch]
+  pods/status                                     []                 []              [get list watch]
+  replicationcontrollers/status                   []                 []              [get list watch]
+  resourcequotas/status                           []                 []              [get list watch]
+  resourcequotas                                  []                 []              [get list watch]
+  services/status                                 []                 []              [get list watch]
+  controllerrevisions.apps                        []                 []              [get list watch]
+  daemonsets.apps/status                          []                 []              [get list watch]
+  deployments.apps/status                         []                 []              [get list watch]
+  replicasets.apps/status                         []                 []              [get list watch]
+  statefulsets.apps/status                        []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling/status     []                 []              [get list watch]
+  cronjobs.batch/status                           []                 []              [get list watch]
+  jobs.batch/status                               []                 []              [get list watch]
+  endpointslices.discovery.k8s.io                 []                 []              [get list watch]
+  daemonsets.extensions/status                    []                 []              [get list watch]
+  deployments.extensions/status                   []                 []              [get list watch]
+  ingresses.extensions/status                     []                 []              [get list watch]
+  replicasets.extensions/status                   []                 []              [get list watch]
+  ingresses.networking.k8s.io/status              []                 []              [get list watch]
+  poddisruptionbudgets.policy/status              []                 []              [get list watch]
+  serviceaccounts                                 []                 []              [impersonate create delete deletecollection patch update get list watch]
+
+
+
+
+
+
+Name:         edit
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+              rbac.authorization.k8s.io/aggregate-to-admin=true
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources                                    Non-Resource URLs  Resource Names  Verbs
+  ---------                                    -----------------  --------------  -----
+  configmaps                                   []                 []              [create delete deletecollection patch update get list watch]
+  events                                       []                 []              [create delete deletecollection patch update get list watch]
+  persistentvolumeclaims                       []                 []              [create delete deletecollection patch update get list watch]
+  pods                                         []                 []              [create delete deletecollection patch update get list watch]
+  replicationcontrollers/scale                 []                 []              [create delete deletecollection patch update get list watch]
+  replicationcontrollers                       []                 []              [create delete deletecollection patch update get list watch]
+  services                                     []                 []              [create delete deletecollection patch update get list watch]
+  daemonsets.apps                              []                 []              [create delete deletecollection patch update get list watch]
+  deployments.apps/scale                       []                 []              [create delete deletecollection patch update get list watch]
+  deployments.apps                             []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.apps/scale                       []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.apps                             []                 []              [create delete deletecollection patch update get list watch]
+  statefulsets.apps/scale                      []                 []              [create delete deletecollection patch update get list watch]
+  statefulsets.apps                            []                 []              [create delete deletecollection patch update get list watch]
+  horizontalpodautoscalers.autoscaling         []                 []              [create delete deletecollection patch update get list watch]
+  cronjobs.batch                               []                 []              [create delete deletecollection patch update get list watch]
+  jobs.batch                                   []                 []              [create delete deletecollection patch update get list watch]
+  daemonsets.extensions                        []                 []              [create delete deletecollection patch update get list watch]
+  deployments.extensions/scale                 []                 []              [create delete deletecollection patch update get list watch]
+  deployments.extensions                       []                 []              [create delete deletecollection patch update get list watch]
+  ingresses.extensions                         []                 []              [create delete deletecollection patch update get list watch]
+  networkpolicies.extensions                   []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.extensions/scale                 []                 []              [create delete deletecollection patch update get list watch]
+  replicasets.extensions                       []                 []              [create delete deletecollection patch update get list watch]
+  replicationcontrollers.extensions/scale      []                 []              [create delete deletecollection patch update get list watch]
+  ingresses.networking.k8s.io                  []                 []              [create delete deletecollection patch update get list watch]
+  networkpolicies.networking.k8s.io            []                 []              [create delete deletecollection patch update get list watch]
+  poddisruptionbudgets.policy                  []                 []              [create delete deletecollection patch update get list watch]
+  deployments.apps/rollback                    []                 []              [create delete deletecollection patch update]
+  deployments.extensions/rollback              []                 []              [create delete deletecollection patch update]
+  pods/attach                                  []                 []              [get list watch create delete deletecollection patch update]
+  pods/exec                                    []                 []              [get list watch create delete deletecollection patch update]
+  pods/portforward                             []                 []              [get list watch create delete deletecollection patch update]
+  pods/proxy                                   []                 []              [get list watch create delete deletecollection patch update]
+  secrets                                      []                 []              [get list watch create delete deletecollection patch update]
+  services/proxy                               []                 []              [get list watch create delete deletecollection patch update]
+  bindings                                     []                 []              [get list watch]
+  endpoints                                    []                 []              [get list watch]
+  limitranges                                  []                 []              [get list watch]
+  namespaces/status                            []                 []              [get list watch]
+  namespaces                                   []                 []              [get list watch]
+  persistentvolumeclaims/status                []                 []              [get list watch]
+  pods/log                                     []                 []              [get list watch]
+  pods/status                                  []                 []              [get list watch]
+  replicationcontrollers/status                []                 []              [get list watch]
+  resourcequotas/status                        []                 []              [get list watch]
+  resourcequotas                               []                 []              [get list watch]
+  services/status                              []                 []              [get list watch]
+  controllerrevisions.apps                     []                 []              [get list watch]
+  daemonsets.apps/status                       []                 []              [get list watch]
+  deployments.apps/status                      []                 []              [get list watch]
+  replicasets.apps/status                      []                 []              [get list watch]
+  statefulsets.apps/status                     []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling/status  []                 []              [get list watch]
+  cronjobs.batch/status                        []                 []              [get list watch]
+  jobs.batch/status                            []                 []              [get list watch]
+  endpointslices.discovery.k8s.io              []                 []              [get list watch]
+  daemonsets.extensions/status                 []                 []              [get list watch]
+  deployments.extensions/status                []                 []              [get list watch]
+  ingresses.extensions/status                  []                 []              [get list watch]
+  replicasets.extensions/status                []                 []              [get list watch]
+  ingresses.networking.k8s.io/status           []                 []              [get list watch]
+  poddisruptionbudgets.policy/status           []                 []              [get list watch]
+  serviceaccounts                              []                 []              [impersonate create delete deletecollection patch update get list watch]
+
+
+
+
+
+
+
+
+
+Name:         view
+Labels:       kubernetes.io/bootstrapping=rbac-defaults
+              rbac.authorization.k8s.io/aggregate-to-edit=true
+Annotations:  rbac.authorization.kubernetes.io/autoupdate: true
+PolicyRule:
+  Resources                                    Non-Resource URLs  Resource Names  Verbs
+  ---------                                    -----------------  --------------  -----
+  bindings                                     []                 []              [get list watch]
+  configmaps                                   []                 []              [get list watch]
+  endpoints                                    []                 []              [get list watch]
+  events                                       []                 []              [get list watch]
+  limitranges                                  []                 []              [get list watch]
+  namespaces/status                            []                 []              [get list watch]
+  namespaces                                   []                 []              [get list watch]
+  persistentvolumeclaims/status                []                 []              [get list watch]
+  persistentvolumeclaims                       []                 []              [get list watch]
+  pods/log                                     []                 []              [get list watch]
+  pods/status                                  []                 []              [get list watch]
+  pods                                         []                 []              [get list watch]
+  replicationcontrollers/scale                 []                 []              [get list watch]
+  replicationcontrollers/status                []                 []              [get list watch]
+  replicationcontrollers                       []                 []              [get list watch]
+  resourcequotas/status                        []                 []              [get list watch]
+  resourcequotas                               []                 []              [get list watch]
+  serviceaccounts                              []                 []              [get list watch]
+  services/status                              []                 []              [get list watch]
+  services                                     []                 []              [get list watch]
+  controllerrevisions.apps                     []                 []              [get list watch]
+  daemonsets.apps/status                       []                 []              [get list watch]
+  daemonsets.apps                              []                 []              [get list watch]
+  deployments.apps/scale                       []                 []              [get list watch]
+  deployments.apps/status                      []                 []              [get list watch]
+  deployments.apps                             []                 []              [get list watch]
+  replicasets.apps/scale                       []                 []              [get list watch]
+  replicasets.apps/status                      []                 []              [get list watch]
+  replicasets.apps                             []                 []              [get list watch]
+  statefulsets.apps/scale                      []                 []              [get list watch]
+  statefulsets.apps/status                     []                 []              [get list watch]
+  statefulsets.apps                            []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling/status  []                 []              [get list watch]
+  horizontalpodautoscalers.autoscaling         []                 []              [get list watch]
+  cronjobs.batch/status                        []                 []              [get list watch]
+  cronjobs.batch                               []                 []              [get list watch]
+  jobs.batch/status                            []                 []              [get list watch]
+  jobs.batch                                   []                 []              [get list watch]
+  endpointslices.discovery.k8s.io              []                 []              [get list watch]
+  daemonsets.extensions/status                 []                 []              [get list watch]
+  daemonsets.extensions                        []                 []              [get list watch]
+  deployments.extensions/scale                 []                 []              [get list watch]
+  deployments.extensions/status                []                 []              [get list watch]
+  deployments.extensions                       []                 []              [get list watch]
+  ingresses.extensions/status                  []                 []              [get list watch]
+  ingresses.extensions                         []                 []              [get list watch]
+  networkpolicies.extensions                   []                 []              [get list watch]
+  replicasets.extensions/scale                 []                 []              [get list watch]
+  replicasets.extensions/status                []                 []              [get list watch]
+  replicasets.extensions                       []                 []              [get list watch]
+  replicationcontrollers.extensions/scale      []                 []              [get list watch]
+  ingresses.networking.k8s.io/status           []                 []              [get list watch]
+  ingresses.networking.k8s.io                  []                 []              [get list watch]
+  networkpolicies.networking.k8s.io            []                 []              [get list watch]
+  poddisruptionbudgets.policy/status           []                 []              [get list watch]
+  poddisruptionbudgets.policy                  []                 []              [get list watch]
+

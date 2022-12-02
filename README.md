@@ -403,3 +403,17 @@ ${BASH_REMATCH[1]}
 ```
 $(BASH_REMATCH[1])
 ```
+
+
+
+## Docker镜像导出导入
+
+### 导出镜像
+```
+$> docker save -o xtrabackup-1.0.tar gcr.io/google-samples/xtrabackup:1.0
+```
+
+```
+$> docker load < xtrabackup-1.0.tar 
+Loaded image: gcr.io/google-samples/xtrabackup:1.0
+```
