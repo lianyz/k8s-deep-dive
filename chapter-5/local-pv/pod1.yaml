@@ -15,4 +15,4 @@ spec:
   volumes:
   - name: example-pv-storage
     persistentVolumeClaim:
-      claimName: example-local-claim1
+      claimName: example-local-pvc1
