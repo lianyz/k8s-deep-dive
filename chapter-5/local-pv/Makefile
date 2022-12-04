@@ -1,3 +1,6 @@
+.PHONY: all
+all:
+	disk
 
 .PHONY: disk
 disk:
